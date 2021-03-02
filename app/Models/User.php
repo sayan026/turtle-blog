@@ -58,4 +58,11 @@ class User extends Authenticatable implements JWTSubject
             $this->attributes['password'] = bcrypt($password);
         }
     }
+
+    public function getJoinedOnAttribute()
+    {
+        return date("d-m-Y", strtotime($this->created_at));
+    }
+
+    protected $appends = ['joined_on'];
 }

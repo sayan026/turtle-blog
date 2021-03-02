@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +18,7 @@ use App\Http\Controllers\AuthController;
 
 Route::post("/signin", [AuthController::class, "signin"]);
 Route::get("/signout", [AuthController::class, "signout"])->middleware("auth:api");
+Route::get("/users", [UserController::class, "list"])->middleware("auth:api");
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
